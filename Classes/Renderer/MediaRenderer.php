@@ -12,12 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Renderer;
 
 use Brotkrueml\FeedGenerator\Contract\ExtensionElementInterface;
-use Brotkrueml\FeedGenerator\Contract\ExtensionRendererInterface;
+use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 
-final class MediaRenderer implements ExtensionRendererInterface
+final class MediaRenderer implements XmlExtensionRendererInterface
 {
     private \DOMDocument $document;
 

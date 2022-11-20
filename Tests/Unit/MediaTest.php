@@ -77,7 +77,7 @@ final class MediaTest extends TestCase
      */
     public function getRendererReturnsCorrectRenderer(): void
     {
-        $actual = $this->subject->getRenderer();
+        $actual = $this->subject->getXmlRenderer();
 
         self::assertInstanceOf(MediaRenderer::class, $actual);
     }

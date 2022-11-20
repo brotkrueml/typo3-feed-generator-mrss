@@ -12,12 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss;
 
 use Brotkrueml\FeedGenerator\Contract\ExtensionElementInterface;
-use Brotkrueml\FeedGenerator\Contract\ExtensionInterface;
-use Brotkrueml\FeedGenerator\Contract\ExtensionRendererInterface;
+use Brotkrueml\FeedGenerator\Contract\XmlExtensionInterface;
+use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaRenderer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 
-final class Media implements ExtensionInterface
+final class Media implements XmlExtensionInterface
 {
     public function canHandle(ExtensionElementInterface $element): bool
     {
@@ -34,7 +34,7 @@ final class Media implements ExtensionInterface
         return 'media';
     }
 
-    public function getRenderer(): ExtensionRendererInterface
+    public function getXmlRenderer(): XmlExtensionRendererInterface
     {
         return new MediaRenderer();
     }
