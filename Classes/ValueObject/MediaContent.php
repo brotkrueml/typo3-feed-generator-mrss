@@ -54,10 +54,13 @@ final class MediaContent implements ExtensionContentInterface
     // - status
     // - subTitle
     // - text
-    // - thumbnails
     private string $description = '';
     private string $keywords = '';
     private string $player = '';
+    /**
+     * @var MediaThumbnail[]
+     */
+    private array $thumbnails = [];
     private string $title = '';
 
     public function getBitrate(): int
@@ -260,6 +263,21 @@ final class MediaContent implements ExtensionContentInterface
     public function setPlayer(string $player): self
     {
         $this->player = $player;
+
+        return $this;
+    }
+
+    /**
+     * @return MediaThumbnail[]
+     */
+    public function getThumbnails(): array
+    {
+        return $this->thumbnails;
+    }
+
+    public function addThumbnails(MediaThumbnail ...$thumbnails): self
+    {
+        $this->thumbnails = [...$this->thumbnails, ...$thumbnails];
 
         return $this;
     }

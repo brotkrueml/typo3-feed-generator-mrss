@@ -14,8 +14,12 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent
+ */
 final class MediaContentTest extends TestCase
 {
     private MediaContent $subject;
@@ -236,6 +240,29 @@ final class MediaContentTest extends TestCase
 
         self::assertSame($this->subject, $actual);
         self::assertSame('kitty, cat, big dog, yarn, fluffy', $this->subject->getKeywords());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndAddThumbnail(): void
+    {
+        $thumbnail1 = new MediaThumbnail('https://example.org/some-thumbnail');
+        $thumbnail2 = new MediaThumbnail('https://example.org/another-thumbnail');
+
+        $actual = $this->subject->addThumbnails($thumbnail1, $thumbnail2);
+
+        self::assertSame($this->subject, $actual);
+        self::assertCount(2, $this->subject->getThumbnails());
+        self::assertContains($thumbnail1, $this->subject->getThumbnails());
+        self::assertContains($thumbnail2, $this->subject->getThumbnails());
+
+        $thumbnail3 = new MediaThumbnail('https://example.org/one-more-thumbnail');
+
+        $this->subject->addThumbnails($thumbnail3);
+
+        self::assertCount(3, $this->subject->getThumbnails());
+        self::assertContains($thumbnail3, $this->subject->getThumbnails());
     }
 
     /**

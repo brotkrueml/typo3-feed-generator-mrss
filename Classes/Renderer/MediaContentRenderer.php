@@ -16,6 +16,7 @@ use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Media;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 
 final class MediaContentRenderer implements XmlExtensionRendererInterface
@@ -57,6 +58,10 @@ final class MediaContentRenderer implements XmlExtensionRendererInterface
         $this->addTextNode($qualifiedName . ':title', $content->getTitle(), $contentElement);
         $this->addTextNode($qualifiedName . ':description', $content->getDescription(), $contentElement);
         $this->addTextNode($qualifiedName . ':keywords', $content->getKeywords(), $contentElement);
+        $thumbnailNode = new MediaThumbnailNode($this->document, $contentElement);
+        foreach ($content->getThumbnails() as $thumbnail) {
+            $thumbnailNode->add($thumbnail);
+        }
         $this->addTextNode($qualifiedName . ':player', $content->getPlayer(), $contentElement);
 
         $parent->appendChild($contentElement);

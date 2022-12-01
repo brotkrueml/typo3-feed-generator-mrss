@@ -16,6 +16,7 @@ use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredMediaContentException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -280,6 +281,37 @@ XML,
 <root>
   <media:content url="https://example.org/some-media">
     <media:keywords>some keyword</media:keywords>
+  </media:content>
+</root>
+XML,
+        ];
+
+        yield 'one thumbnail is given' => [
+            'content' => (new MediaContent())
+                ->setUrl('https://example.org/some-media')
+                ->addThumbnails(new MediaThumbnail('https://example.org/some-thumbnail.jpg')),
+            'expected' => <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <media:content url="https://example.org/some-media">
+    <media:thumbnail url="https://example.org/some-thumbnail.jpg"/>
+  </media:content>
+</root>
+XML,
+        ];
+        yield 'two thumbnails are given' => [
+            'content' => (new MediaContent())
+                ->setUrl('https://example.org/some-media')
+                ->addThumbnails(
+                    new MediaThumbnail('https://example.org/some-thumbnail.jpg'),
+                    new MediaThumbnail('https://example.org/another-thumbnail.jpg'),
+                ),
+            'expected' => <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <media:content url="https://example.org/some-media">
+    <media:thumbnail url="https://example.org/some-thumbnail.jpg"/>
+    <media:thumbnail url="https://example.org/another-thumbnail.jpg"/>
   </media:content>
 </root>
 XML,
