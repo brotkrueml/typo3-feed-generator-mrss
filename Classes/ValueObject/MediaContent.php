@@ -45,7 +45,6 @@ final class MediaContent implements ExtensionContentInterface
     // - hash
     // - license
     // - peerLink
-    // - player
     // - price
     // - rating
     // - responses
@@ -58,6 +57,7 @@ final class MediaContent implements ExtensionContentInterface
     // - thumbnails
     private string $description = '';
     private string $keywords = '';
+    private string $player = '';
     private string $title = '';
 
     public function getBitrate(): int
@@ -248,6 +248,18 @@ final class MediaContent implements ExtensionContentInterface
     public function setKeywords(string $keywords): self
     {
         $this->keywords = $keywords;
+
+        return $this;
+    }
+
+    public function getPlayer(): string
+    {
+        return $this->player;
+    }
+
+    public function setPlayer(string $player): self
+    {
+        $this->player = $player;
 
         return $this;
     }

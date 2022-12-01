@@ -14,11 +14,14 @@ namespace Brotkrueml\FeedGeneratorMrss;
 use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGenerator\Contract\XmlExtensionInterface;
 use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
-use Brotkrueml\FeedGeneratorMrss\Renderer\MediaRenderer;
+use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 
 final class Media implements XmlExtensionInterface
 {
+    private const NAMESPACE = 'http://search.yahoo.com/mrss/';
+    private const QUALIFIED_NAME = 'media';
+
     public function canHandle(ExtensionContentInterface $content): bool
     {
         return $content instanceof MediaContent;
@@ -26,16 +29,16 @@ final class Media implements XmlExtensionInterface
 
     public function getNamespace(): string
     {
-        return 'http://search.yahoo.com/mrss/';
+        return self::NAMESPACE;
     }
 
     public function getQualifiedName(): string
     {
-        return 'media';
+        return self::QUALIFIED_NAME;
     }
 
     public function getXmlRenderer(): XmlExtensionRendererInterface
     {
-        return new MediaRenderer();
+        return new MediaContentRenderer();
     }
 }

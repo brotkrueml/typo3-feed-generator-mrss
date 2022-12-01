@@ -1,6 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to an undefined method DOMNode\\:\\:setAttribute\\(\\)\\.$#"
-			count: 1
-			path: Classes/Renderer/MediaRenderer.php

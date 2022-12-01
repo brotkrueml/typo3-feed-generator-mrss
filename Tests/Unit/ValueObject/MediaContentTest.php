@@ -40,6 +40,7 @@ final class MediaContentTest extends TestCase
         self::assertFalse($this->subject->getIsDefault());
         self::assertSame('', $this->subject->getLang());
         self::assertNull($this->subject->getMedium());
+        self::assertSame('', $this->subject->getPlayer());
         self::assertSame('', $this->subject->getSamplingrate());
         self::assertSame('', $this->subject->getType());
         self::assertSame('', $this->subject->getUrl());
@@ -158,6 +159,17 @@ final class MediaContentTest extends TestCase
 
         self::assertSame($this->subject, $actual);
         self::assertSame(Medium::Video, $this->subject->getMedium());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetPlayer(): void
+    {
+        $actual = $this->subject->setPlayer('https://example.org/embed/player?id=1234567');
+
+        self::assertSame($this->subject, $actual);
+        self::assertSame('https://example.org/embed/player?id=1234567', $this->subject->getPlayer());
     }
 
     /**

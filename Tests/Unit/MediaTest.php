@@ -13,7 +13,7 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit;
 
 use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGeneratorMrss\Media;
-use Brotkrueml\FeedGeneratorMrss\Renderer\MediaRenderer;
+use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use PHPUnit\Framework\TestCase;
 
@@ -79,6 +79,6 @@ final class MediaTest extends TestCase
     {
         $actual = $this->subject->getXmlRenderer();
 
-        self::assertInstanceOf(MediaRenderer::class, $actual);
+        self::assertInstanceOf(MediaContentRenderer::class, $actual);
     }
 }
