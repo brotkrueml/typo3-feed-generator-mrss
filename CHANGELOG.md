@@ -8,4 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First preview release
 
-[0.1.0]: https://github.com/brotkrueml/typo3-feed-generator/releases/tag/v0.1.0
+[0.1.0]: https://github.com/brotkrueml/typo3-feed-generator-mrss/releases/tag/v0.1.0
