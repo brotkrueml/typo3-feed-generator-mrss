@@ -11,11 +11,11 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\ValueObject;
 
-use Brotkrueml\FeedGenerator\Contract\ExtensionElementInterface;
+use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 
-final class MediaContent implements ExtensionElementInterface
+final class MediaContent implements ExtensionContentInterface
 {
     // Attributes for <media:content>
     private int $bitrate = 0;

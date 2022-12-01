@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss;
 
-use Brotkrueml\FeedGenerator\Contract\ExtensionElementInterface;
+use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGenerator\Contract\XmlExtensionInterface;
 use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaRenderer;
@@ -19,9 +19,9 @@ use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 
 final class Media implements XmlExtensionInterface
 {
-    public function canHandle(ExtensionElementInterface $element): bool
+    public function canHandle(ExtensionContentInterface $content): bool
     {
-        return $element instanceof MediaContent;
+        return $content instanceof MediaContent;
     }
 
     public function getNamespace(): string

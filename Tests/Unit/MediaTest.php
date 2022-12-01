@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit;
 
-use Brotkrueml\FeedGenerator\Contract\ExtensionElementInterface;
+use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGeneratorMrss\Media;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaRenderer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
@@ -44,7 +44,7 @@ final class MediaTest extends TestCase
      */
     public function canHandleReturnsFalseIfElementIsNotRecognised(): void
     {
-        $element = new class() implements ExtensionElementInterface {
+        $element = new class() implements ExtensionContentInterface {
         };
 
         $actual = $this->subject->canHandle($element);

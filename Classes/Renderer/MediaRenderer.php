@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\Renderer;
 
-use Brotkrueml\FeedGenerator\Contract\ExtensionElementInterface;
+use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
@@ -21,11 +21,11 @@ final class MediaRenderer implements XmlExtensionRendererInterface
 {
     private \DOMDocument $document;
 
-    public function render(ExtensionElementInterface $element, \DOMNode $parent, \DOMDocument $document): void
+    public function render(ExtensionContentInterface $content, \DOMNode $parent, \DOMDocument $document): void
     {
         $this->document = $document;
 
-        if (! $element instanceof MediaContent) {
+        if (! $content instanceof MediaContent) {
             // @todo Make a better exception
             throw new \RuntimeException('something went wrong');
         }
@@ -35,24 +35,24 @@ final class MediaRenderer implements XmlExtensionRendererInterface
         // @todo Use media prefix from Media->getQualifiedName()
         $contentNode = $this->document->createElement('media:content');
 
-        $this->addAttribute('url', $element->getUrl(), $contentNode);
-        $this->addAttribute('fileSize', $element->getFileSize(), $contentNode);
-        $this->addAttribute('type', $element->getType(), $contentNode);
-        $this->addAttribute('medium', $element->getMedium() instanceof Medium ? $element->getMedium()->value : '', $contentNode);
-        $this->addAttribute('isDefault', $element->getIsDefault() ? 'true' : '', $contentNode);
-        $this->addAttribute('expression', $element->getExpression() instanceof Expression ? $element->getExpression()->value : '', $contentNode);
-        $this->addAttribute('bitrate', $element->getBitrate(), $contentNode);
-        $this->addAttribute('framerate', $element->getFramerate(), $contentNode);
-        $this->addAttribute('samplingrate', $element->getSamplingrate(), $contentNode);
-        $this->addAttribute('channels', $element->getChannels(), $contentNode);
-        $this->addAttribute('duration', $element->getDuration(), $contentNode);
-        $this->addAttribute('height', $element->getHeight(), $contentNode);
-        $this->addAttribute('width', $element->getWidth(), $contentNode);
-        $this->addAttribute('lang', $element->getLang(), $contentNode);
+        $this->addAttribute('url', $content->getUrl(), $contentNode);
+        $this->addAttribute('fileSize', $content->getFileSize(), $contentNode);
+        $this->addAttribute('type', $content->getType(), $contentNode);
+        $this->addAttribute('medium', $content->getMedium() instanceof Medium ? $content->getMedium()->value : '', $contentNode);
+        $this->addAttribute('isDefault', $content->getIsDefault() ? 'true' : '', $contentNode);
+        $this->addAttribute('expression', $content->getExpression() instanceof Expression ? $content->getExpression()->value : '', $contentNode);
+        $this->addAttribute('bitrate', $content->getBitrate(), $contentNode);
+        $this->addAttribute('framerate', $content->getFramerate(), $contentNode);
+        $this->addAttribute('samplingrate', $content->getSamplingrate(), $contentNode);
+        $this->addAttribute('channels', $content->getChannels(), $contentNode);
+        $this->addAttribute('duration', $content->getDuration(), $contentNode);
+        $this->addAttribute('height', $content->getHeight(), $contentNode);
+        $this->addAttribute('width', $content->getWidth(), $contentNode);
+        $this->addAttribute('lang', $content->getLang(), $contentNode);
 
-        $this->addTextNode('media:title', $element->getTitle(), $contentNode);
-        $this->addTextNode('media:description', $element->getDescription(), $contentNode);
-        $this->addTextNode('media:keywords', $element->getKeywords(), $contentNode);
+        $this->addTextNode('media:title', $content->getTitle(), $contentNode);
+        $this->addTextNode('media:description', $content->getDescription(), $contentNode);
+        $this->addTextNode('media:keywords', $content->getKeywords(), $contentNode);
 
         $parent->appendChild($contentNode);
     }
