@@ -8,6 +8,7 @@ use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYieldsRector;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->phpVersion(PhpVersion::PHP_81);
@@ -35,5 +36,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
     $rectorConfig->skip([
         AddLiteralSeparatorToNumberRector::class,
+        AddReturnTypeDeclarationFromYieldsRector::class => [
+            __DIR__ . '/Tests',
+        ],
     ]);
 };
