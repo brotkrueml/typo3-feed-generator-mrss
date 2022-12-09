@@ -46,7 +46,6 @@ final class MediaContent implements ExtensionContentInterface
     // - license
     // - peerLink
     // - price
-    // - rating
     // - responses
     // - restriction
     // - rights
@@ -57,6 +56,7 @@ final class MediaContent implements ExtensionContentInterface
     private string $description = '';
     private string $keywords = '';
     private ?MediaPlayer $player = null;
+    private ?MediaRating $rating = null;
     /**
      * @var MediaThumbnail[]
      */
@@ -263,6 +263,18 @@ final class MediaContent implements ExtensionContentInterface
     public function setPlayer(?MediaPlayer $player): self
     {
         $this->player = $player;
+
+        return $this;
+    }
+
+    public function getRating(): ?MediaRating
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?MediaRating $rating): self
+    {
+        $this->rating = $rating;
 
         return $this;
     }

@@ -17,6 +17,7 @@ use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredMediaContentException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
@@ -282,6 +283,20 @@ XML,
 <root>
   <media:content url="https://example.org/some-media">
     <media:keywords>some keyword</media:keywords>
+  </media:content>
+</root>
+XML,
+        ];
+
+        yield 'Rating is given' => [
+            'content' => (new MediaContent())
+                ->setUrl('https://example.org/some-media')
+                ->setRating(new MediaRating('adult')),
+            'expected' => <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <media:content url="https://example.org/some-media">
+    <media:rating>adult</media:rating>
   </media:content>
 </root>
 XML,

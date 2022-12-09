@@ -15,6 +15,7 @@ use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
@@ -177,6 +178,19 @@ final class MediaContentTest extends TestCase
 
         self::assertSame($this->subject, $actual);
         self::assertSame($player, $this->subject->getPlayer());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetRating(): void
+    {
+        $rating = new MediaRating('adult');
+
+        $actual = $this->subject->setRating($rating);
+
+        self::assertSame($this->subject, $actual);
+        self::assertSame($rating, $this->subject->getRating());
     }
 
     /**
