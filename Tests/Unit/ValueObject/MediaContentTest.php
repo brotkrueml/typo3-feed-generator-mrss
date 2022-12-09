@@ -14,6 +14,7 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
@@ -44,7 +45,7 @@ final class MediaContentTest extends TestCase
         self::assertFalse($this->subject->getIsDefault());
         self::assertSame('', $this->subject->getLang());
         self::assertNull($this->subject->getMedium());
-        self::assertSame('', $this->subject->getPlayer());
+        self::assertNull($this->subject->getPlayer());
         self::assertSame('', $this->subject->getSamplingrate());
         self::assertSame('', $this->subject->getType());
         self::assertSame('', $this->subject->getUrl());
@@ -170,10 +171,12 @@ final class MediaContentTest extends TestCase
      */
     public function getAndSetPlayer(): void
     {
-        $actual = $this->subject->setPlayer('https://example.org/embed/player?id=1234567');
+        $player = new MediaPlayer('https://example.org/player?id=1111');
+
+        $actual = $this->subject->setPlayer($player);
 
         self::assertSame($this->subject, $actual);
-        self::assertSame('https://example.org/embed/player?id=1234567', $this->subject->getPlayer());
+        self::assertSame($player, $this->subject->getPlayer());
     }
 
     /**

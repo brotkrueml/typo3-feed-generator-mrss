@@ -16,8 +16,10 @@ use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Media;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaPlayerNode;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 
 final class MediaContentRenderer implements XmlExtensionRendererInterface
 {
@@ -30,7 +32,7 @@ final class MediaContentRenderer implements XmlExtensionRendererInterface
     {
         $this->document = $document;
 
-        if ($content->getUrl() === '' && $content->getPlayer() === '') {
+        if ($content->getUrl() === '' && $content->getPlayer() === null) {
             throw new MissingRequiredMediaContentException(
                 'Either url or player must be given for media content',
                 1669902205
@@ -62,7 +64,10 @@ final class MediaContentRenderer implements XmlExtensionRendererInterface
         foreach ($content->getThumbnails() as $thumbnail) {
             $thumbnailNode->add($thumbnail);
         }
-        $this->addTextNode($qualifiedName . ':player', $content->getPlayer(), $contentElement);
+        if ($content->getPlayer() instanceof MediaPlayer) {
+            $playerNode = new MediaPlayerNode($this->document, $contentElement);
+            $playerNode->add($content->getPlayer());
+        }
 
         $parent->appendChild($contentElement);
     }

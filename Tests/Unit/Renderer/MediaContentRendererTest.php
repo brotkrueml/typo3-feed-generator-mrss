@@ -16,6 +16,7 @@ use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredMediaContentException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
@@ -77,12 +78,12 @@ XML,
 
         yield 'Only player is given' => [
             'content' => (new MediaContent())
-                ->setPlayer('https://example.org/some-player?id=1234'),
+                ->setPlayer(new MediaPlayer('https://example.org/some-player?id=1234')),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <media:content>
-    <media:player>https://example.org/some-player?id=1234</media:player>
+    <media:player url="https://example.org/some-player?id=1234" />
   </media:content>
 </root>
 XML,

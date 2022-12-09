@@ -56,7 +56,7 @@ final class MediaContent implements ExtensionContentInterface
     // - text
     private string $description = '';
     private string $keywords = '';
-    private string $player = '';
+    private ?MediaPlayer $player = null;
     /**
      * @var MediaThumbnail[]
      */
@@ -255,12 +255,12 @@ final class MediaContent implements ExtensionContentInterface
         return $this;
     }
 
-    public function getPlayer(): string
+    public function getPlayer(): ?MediaPlayer
     {
         return $this->player;
     }
 
-    public function setPlayer(string $player): self
+    public function setPlayer(?MediaPlayer $player): self
     {
         $this->player = $player;
 
