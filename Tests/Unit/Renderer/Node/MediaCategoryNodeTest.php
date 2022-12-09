@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Node;
 
-use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredPropertyException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaCategoryNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
 use PHPUnit\Framework\TestCase;

@@ -16,6 +16,7 @@ use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Media;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredMediaContentException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaCategoryNode;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaPlayerNode;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaRatingNode;

@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer;
+namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Exception;
 
-use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredPropertyException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use PHPUnit\Framework\TestCase;
 
 final class MissingRequiredPropertyExceptionTest extends TestCase

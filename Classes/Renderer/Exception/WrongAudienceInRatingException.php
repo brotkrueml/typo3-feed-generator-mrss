@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\FeedGeneratorMrss\Renderer;
+namespace Brotkrueml\FeedGeneratorMrss\Renderer\Exception;
 
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Node;
 
-use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredPropertyException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaPlayerNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use PHPUnit\Framework\TestCase;

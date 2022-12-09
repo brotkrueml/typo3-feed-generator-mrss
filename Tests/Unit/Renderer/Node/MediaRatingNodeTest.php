@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Node;
 
-use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredPropertyException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\WrongAudienceInRatingException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaRatingNode;
-use Brotkrueml\FeedGeneratorMrss\Renderer\WrongAudienceInRatingException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 use PHPUnit\Framework\TestCase;
 

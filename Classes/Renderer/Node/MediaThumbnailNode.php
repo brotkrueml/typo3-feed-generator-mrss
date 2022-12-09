@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Renderer\Node;
 
 use Brotkrueml\FeedGeneratorMrss\Media;
-use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredPropertyException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 
 /**

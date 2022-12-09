@@ -13,8 +13,8 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer;
 
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredMediaContentException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
-use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredMediaContentException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;

@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer;
+namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Exception;
 
-use Brotkrueml\FeedGeneratorMrss\Renderer\WrongAudienceInRatingException;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\WrongAudienceInRatingException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 use PHPUnit\Framework\TestCase;
 
