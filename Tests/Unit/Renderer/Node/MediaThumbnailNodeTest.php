@@ -16,6 +16,9 @@ use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode
+ */
 final class MediaThumbnailNodeTest extends TestCase
 {
     private \DOMDocument $document;

@@ -16,6 +16,9 @@ use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaPlayerNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer
+ */
 final class MediaPlayerNodeTest extends TestCase
 {
     private \DOMDocument $document;
