@@ -15,6 +15,7 @@ use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MissingRequiredMediaContentException;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
@@ -297,6 +298,20 @@ XML,
 <root>
   <media:content url="https://example.org/some-media">
     <media:rating>adult</media:rating>
+  </media:content>
+</root>
+XML,
+        ];
+
+        yield 'Category is given' => [
+            'content' => (new MediaContent())
+                ->setUrl('https://example.org/some-media')
+                ->setCategory(new MediaCategory('music/artist/album/song')),
+            'expected' => <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <media:content url="https://example.org/some-media">
+    <media:category>music/artist/album/song</media:category>
   </media:content>
 </root>
 XML,

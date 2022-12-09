@@ -16,9 +16,11 @@ use Brotkrueml\FeedGenerator\Contract\XmlExtensionRendererInterface;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
 use Brotkrueml\FeedGeneratorMrss\Media;
+use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaCategoryNode;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaPlayerNode;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaRatingNode;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
@@ -73,6 +75,10 @@ final class MediaContentRenderer implements XmlExtensionRendererInterface
         if ($content->getRating() instanceof MediaRating) {
             $ratingNode = new MediaRatingNode($this->document, $contentElement);
             $ratingNode->add($content->getRating());
+        }
+        if ($content->getCategory() instanceof MediaCategory) {
+            $categoryNode = new MediaCategoryNode($this->document, $contentElement);
+            $categoryNode->add($content->getCategory());
         }
 
         $parent->appendChild($contentElement);

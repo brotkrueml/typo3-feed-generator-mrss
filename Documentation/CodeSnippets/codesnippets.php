@@ -10,6 +10,7 @@ declare(strict_types=1);
  */
 
 $classes = [
+    \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory::class => 'Classes/MediaCategory.rst',
     \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent::class => 'Classes/MediaContent.rst',
     \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer::class => 'Classes/MediaPlayer.rst',
     \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating::class => 'Classes/MediaRating.rst',

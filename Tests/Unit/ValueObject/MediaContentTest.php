@@ -13,6 +13,7 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Expression;
 use Brotkrueml\FeedGeneratorMrss\Enumeration\Medium;
+use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
@@ -66,6 +67,19 @@ final class MediaContentTest extends TestCase
 
         self::assertSame($this->subject, $actual);
         self::assertSame(128, $this->subject->getBitrate());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetCategory(): void
+    {
+        $category = new MediaCategory('music/artist/album/song');
+
+        $actual = $this->subject->setCategory($category);
+
+        self::assertSame($this->subject, $actual);
+        self::assertSame($category, $this->subject->getCategory());
     }
 
     /**

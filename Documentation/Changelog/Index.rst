@@ -15,6 +15,7 @@ Added
 ^^^^^
 
 
+* Possibility to set the category
 * Possibility to set the rating
 
 Fixed

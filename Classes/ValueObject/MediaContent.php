@@ -36,7 +36,6 @@ final class MediaContent implements ExtensionContentInterface
     // Sub-elements of <media:content>
     // todo:
     // - backLinks
-    // - category
     // - comments
     // - community
     // - copyright
@@ -53,6 +52,7 @@ final class MediaContent implements ExtensionContentInterface
     // - status
     // - subTitle
     // - text
+    private ?MediaCategory $category = null;
     private string $description = '';
     private string $keywords = '';
     private ?MediaPlayer $player = null;
@@ -227,6 +227,18 @@ final class MediaContent implements ExtensionContentInterface
     public function setWidth(int $width): self
     {
         $this->width = $width;
+
+        return $this;
+    }
+
+    public function getCategory(): ?MediaCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?MediaCategory $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

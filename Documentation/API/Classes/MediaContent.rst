@@ -135,6 +135,15 @@ Brotkrueml\\FeedGeneratorMrss\\ValueObject\\MediaContent
       :param int $width: the width
       :returntype: self
       
+   .. php:method:: getCategory()
+   
+      :returntype: Brotkrueml\\FeedGeneratorMrss\\ValueObject\\MediaCategory
+      
+   .. php:method:: setCategory(Brotkrueml\\FeedGeneratorMrss\\ValueObject\\MediaCategory category)
+   
+      :param Brotkrueml\\FeedGeneratorMrss\\ValueObject\\MediaCategory $category: the category
+      :returntype: self
+      
    .. php:method:: getDescription()
    
       :returntype: string
