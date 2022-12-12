@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2022-12-12
+
 ### Added
 - Possibility to set the category
 - Possibility to set the rating
@@ -22,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First preview release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-feed-generator/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/brotkrueml/typo3-feed-generator/compare/v0.1.0...v0.1.1
+[Unreleased]: https://github.com/brotkrueml/typo3-feed-generator-mrss/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/brotkrueml/typo3-feed-generator-mrss/compare/v0.1.1...v0.2.0
+[0.1.1]: https://github.com/brotkrueml/typo3-feed-generator-mrss/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/brotkrueml/typo3-feed-generator-mrss/releases/tag/v0.1.0
