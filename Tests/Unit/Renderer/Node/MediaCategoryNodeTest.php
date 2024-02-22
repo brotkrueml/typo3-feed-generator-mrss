@@ -70,8 +70,8 @@ XML;
         $this->subject->add(
             new MediaCategory(
                 'music/artist/album/song',
-                'http://search.yahoo.com/mrss/category_schema'
-            )
+                'http://search.yahoo.com/mrss/category_schema',
+            ),
         );
 
         $expected = <<<XML
@@ -92,8 +92,8 @@ XML;
         $this->subject->add(
             new MediaCategory(
                 'Arts/Movies/Titles/A/Ace_Ventura_Series/Ace_Ventura_ -_Pet_Detective',
-                label: 'Ace Ventura - Pet Detective'
-            )
+                label: 'Ace Ventura - Pet Detective',
+            ),
         );
 
         $expected = <<<XML

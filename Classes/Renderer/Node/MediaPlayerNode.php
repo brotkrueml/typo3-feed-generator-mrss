@@ -24,8 +24,7 @@ final class MediaPlayerNode
     public function __construct(
         private readonly \DOMDocument $document,
         private readonly \DOMElement $parentElement,
-    ) {
-    }
+    ) {}
 
     public function add(MediaPlayer $player): void
     {

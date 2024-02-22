@@ -16,8 +16,7 @@ final class MediaRating
     public function __construct(
         private readonly string $audience,
         private readonly string $scheme = '',
-    ) {
-    }
+    ) {}
 
     public function getAudience(): string
     {

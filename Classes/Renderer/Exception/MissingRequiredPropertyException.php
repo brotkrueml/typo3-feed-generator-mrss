@@ -18,9 +18,9 @@ final class MissingRequiredPropertyException extends \DomainException
         return new self(
             \sprintf(
                 'Required property "%s" is missing.',
-                $property
+                $property,
             ),
-            1669905387
+            1669905387,
         );
     }
 }

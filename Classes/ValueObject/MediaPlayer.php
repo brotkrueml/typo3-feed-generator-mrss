@@ -17,8 +17,7 @@ final class MediaPlayer
         private readonly string $url,
         private readonly int $height = 0,
         private readonly int $width = 0,
-    ) {
-    }
+    ) {}
 
     public function getUrl(): string
     {

@@ -44,8 +44,7 @@ final class MediaTest extends TestCase
      */
     public function canHandleReturnsFalseIfElementIsNotRecognised(): void
     {
-        $element = new class() implements ExtensionContentInterface {
-        };
+        $element = new class() implements ExtensionContentInterface {};
 
         $actual = $this->subject->canHandle($element);
 

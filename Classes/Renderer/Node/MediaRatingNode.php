@@ -25,8 +25,7 @@ final class MediaRatingNode
     public function __construct(
         private readonly \DOMDocument $document,
         private readonly \DOMElement $parentElement,
-    ) {
-    }
+    ) {}
 
     public function add(MediaRating $rating): void
     {

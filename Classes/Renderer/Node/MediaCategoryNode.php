@@ -24,8 +24,7 @@ final class MediaCategoryNode
     public function __construct(
         private readonly \DOMDocument $document,
         private readonly \DOMElement $parentElement,
-    ) {
-    }
+    ) {}
 
     public function add(MediaCategory $category): void
     {

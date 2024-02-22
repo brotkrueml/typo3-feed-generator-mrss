@@ -17,8 +17,7 @@ final class MediaCategory
         private readonly string $taxonomy,
         private readonly string $scheme = '',
         private readonly string $label = '',
-    ) {
-    }
+    ) {}
 
     public function getTaxonomy(): string
     {

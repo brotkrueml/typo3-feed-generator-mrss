@@ -20,9 +20,9 @@ final class WrongAudienceInRatingException extends \DomainException
         return new self(
             \sprintf(
                 'Scheme with "urn:simple" only allows "adult" or "nonadult" as value, "%s" given.',
-                $rating->getAudience()
+                $rating->getAudience(),
             ),
-            1670589654
+            1670589654,
         );
     }
 }

@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FeedGeneratorMrss\Renderer\Exception;
 
-final class MissingRequiredMediaContentException extends \DomainException
-{
-}
+final class MissingRequiredMediaContentException extends \DomainException {}

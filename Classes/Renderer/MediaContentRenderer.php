@@ -40,7 +40,7 @@ final class MediaContentRenderer implements XmlExtensionRendererInterface
         if ($content->getUrl() === '' && $content->getPlayer() === null) {
             throw new MissingRequiredMediaContentException(
                 'Either url or player must be given for media content',
-                1669902205
+                1669902205,
             );
         }
 

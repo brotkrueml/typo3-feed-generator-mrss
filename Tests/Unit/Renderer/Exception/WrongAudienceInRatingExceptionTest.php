@@ -26,7 +26,7 @@ final class WrongAudienceInRatingExceptionTest extends TestCase
 
         self::assertSame(
             'Scheme with "urn:simple" only allows "adult" or "nonadult" as value, "some rating" given.',
-            $actual->getMessage()
+            $actual->getMessage(),
         );
         self::assertSame(1670589654, $actual->getCode());
     }

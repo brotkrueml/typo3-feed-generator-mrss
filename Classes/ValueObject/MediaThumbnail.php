@@ -18,8 +18,7 @@ final class MediaThumbnail
         private readonly int $height = 0,
         private readonly int $width = 0,
         private readonly string $time = '',
-    ) {
-    }
+    ) {}
 
     public function getUrl(): string
     {
