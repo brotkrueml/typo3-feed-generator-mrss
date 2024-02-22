@@ -1,20 +1,19 @@
 includes:
-    - .Build/vendor/symplify/phpstan-rules/config/array-rules.neon
-    - .Build/vendor/symplify/phpstan-rules/config/forbidden-static-rules.neon
     - .Build/vendor/symplify/phpstan-rules/config/regex-rules.neon
+
+rules:
+    - Symplify\PHPStanRules\Rules\NoReturnArrayVariableListRule
 
 parameters:
     phpVersion: 80100
     level: 9
     paths:
         - Classes
+    cognitive_complexity:
+        class: 20
+        function: 9
 
 services:
-    -
-        class: Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            maxClassCognitiveComplexity: 20
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
         tags: [phpstan.rules.rule]
