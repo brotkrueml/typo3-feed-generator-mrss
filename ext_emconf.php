@@ -9,9 +9,9 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '0.3.0-dev',
     'constraints' => [
         'depends' => [
-            'feed_generator' => '0.6.0-0.6.99',
+            'feed_generator' => '0.7.0-0.7.99',
             'php' => '8.1.0-0.0.0',
-            'typo3' => '12.4.0-12.4.99',
+            'typo3' => '12.4.0-13.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

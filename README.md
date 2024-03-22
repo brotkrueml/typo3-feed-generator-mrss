@@ -8,4 +8,9 @@ This package provides an implementation of the
 
 > The extension is under development and in beta state.
 
-The extension supports TYPO3 v12 LTS. Use version 0.2 for compatibility with TYPO3 v11 LTS.
+## Versions and support
+
+| Latest release | TYPO3       | PHP   | Updates will contain             |
+|----------------|-------------|-------|----------------------------------|
+| 0.3.x          | 12.4 - 13.4 | ≥ 8.1 | Features, security and bug fixes |
+| 0.2.x          | 11.5 - 12.4 | ≥ 8.1 | End of life                      |
