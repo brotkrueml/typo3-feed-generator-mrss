@@ -22,10 +22,10 @@ If applicable, add screenshots to help explain your problem.
 
 ### Environment
 
-- Feed Generator mRSS version(s): [e.g. 0.1.0]
-- TYPO3 version(s): [e.g. 11.5.19]
+- Feed Generator mRSS version(s): [e.g. 0.3.0]
+- TYPO3 version(s): [e.g. 12.4.13]
 - Is your TYPO3 installation set up with Composer (Composer Mode): [yes, no]
-- OS: [e.g. OSX 10.13.4, Windows 10, Debian 11]
+- OS: [e.g. OSX 10.13.4, Windows 11, Debian 12]
 
 ### Possible Solution
 
