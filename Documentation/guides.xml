@@ -15,7 +15,7 @@
     />
     <project
         title="Media RSS extension for Feed Generator"
-        release="0.3.0-dev"
+        release="0.3.0"
         version="0.3"
         copyright="since 2022 by Chris Müller"
     />
