@@ -18,11 +18,11 @@ use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent
- */
+#[CoversClass(MediaContent::class)]
 final class MediaContentTest extends TestCase
 {
     private MediaContent $subject;
@@ -32,9 +32,7 @@ final class MediaContentTest extends TestCase
         $this->subject = new MediaContent();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function propertiesAreInitialisedCorrectly(): void
     {
         self::assertSame(0, $this->subject->getBitrate());
@@ -58,9 +56,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('', $this->subject->getTitle());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetBitrate(): void
     {
         $actual = $this->subject->setBitrate(128);
@@ -69,9 +65,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(128, $this->subject->getBitrate());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetCategory(): void
     {
         $category = new MediaCategory('music/artist/album/song');
@@ -82,9 +76,7 @@ final class MediaContentTest extends TestCase
         self::assertSame($category, $this->subject->getCategory());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetChannels(): void
     {
         $actual = $this->subject->setChannels(2);
@@ -93,9 +85,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(2, $this->subject->getChannels());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetDuration(): void
     {
         $actual = $this->subject->setDuration(185);
@@ -104,9 +94,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(185, $this->subject->getDuration());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetExpression(): void
     {
         $actual = $this->subject->setExpression(Expression::Full);
@@ -115,9 +103,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(Expression::Full, $this->subject->getExpression());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetFileSize(): void
     {
         $actual = $this->subject->setFileSize(12216320);
@@ -126,9 +112,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(12216320, $this->subject->getFileSize());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetFramerate(): void
     {
         $actual = $this->subject->setFramerate(25);
@@ -137,9 +121,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(25, $this->subject->getFramerate());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetHeight(): void
     {
         $actual = $this->subject->setHeight(200);
@@ -148,9 +130,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(200, $this->subject->getHeight());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetIsDefault(): void
     {
         $actual = $this->subject->setIsDefault(true);
@@ -159,9 +139,7 @@ final class MediaContentTest extends TestCase
         self::assertTrue($this->subject->getIsDefault());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetLang(): void
     {
         $actual = $this->subject->setLang('en');
@@ -170,9 +148,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('en', $this->subject->getLang());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetMedium(): void
     {
         $actual = $this->subject->setMedium(Medium::Video);
@@ -181,9 +157,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(Medium::Video, $this->subject->getMedium());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetPlayer(): void
     {
         $player = new MediaPlayer('https://example.org/player?id=1111');
@@ -194,9 +168,7 @@ final class MediaContentTest extends TestCase
         self::assertSame($player, $this->subject->getPlayer());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetRating(): void
     {
         $rating = new MediaRating('adult');
@@ -207,9 +179,7 @@ final class MediaContentTest extends TestCase
         self::assertSame($rating, $this->subject->getRating());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetSamplingrate(): void
     {
         $actual = $this->subject->setSamplingrate('44.1');
@@ -218,9 +188,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('44.1', $this->subject->getSamplingrate());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetType(): void
     {
         $actual = $this->subject->setType('video/quicktime');
@@ -229,9 +197,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('video/quicktime', $this->subject->getType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetUrl(): void
     {
         $actual = $this->subject->setUrl('http://www.foo.com/movie.mov');
@@ -240,9 +206,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('http://www.foo.com/movie.mov', $this->subject->getUrl());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetWidth(): void
     {
         $actual = $this->subject->setWidth(300);
@@ -251,9 +215,7 @@ final class MediaContentTest extends TestCase
         self::assertSame(300, $this->subject->getWidth());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetDescription(): void
     {
         $actual = $this->subject->setDescription('This was some really bizarre band I listened to as a young lad.');
@@ -262,9 +224,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('This was some really bizarre band I listened to as a young lad.', $this->subject->getDescription());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetKeywords(): void
     {
         $actual = $this->subject->setKeywords('kitty, cat, big dog, yarn, fluffy');
@@ -273,9 +233,7 @@ final class MediaContentTest extends TestCase
         self::assertSame('kitty, cat, big dog, yarn, fluffy', $this->subject->getKeywords());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndAddThumbnail(): void
     {
         $thumbnail1 = new MediaThumbnail('https://example.org/some-thumbnail');
@@ -296,9 +254,7 @@ final class MediaContentTest extends TestCase
         self::assertContains($thumbnail3, $this->subject->getThumbnails());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetTitle(): void
     {
         $actual = $this->subject->setTitle('The Judy\'s -- The Moo Song');

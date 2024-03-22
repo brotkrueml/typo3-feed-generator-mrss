@@ -14,11 +14,11 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Node;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaCategoryNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaCategoryNode
- */
+#[CoversClass(MediaCategoryNode::class)]
 final class MediaCategoryNodeTest extends TestCase
 {
     private \DOMDocument $document;
@@ -30,13 +30,12 @@ final class MediaCategoryNodeTest extends TestCase
         $this->document->formatOutput = true;
 
         $rootElement = $this->document->appendChild($this->document->createElement('root'));
+        $rootElement->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
 
         $this->subject = new MediaCategoryNode($this->document, $rootElement);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function audienceIsNotSetThenAnExceptionIsThrown(): void
     {
         $this->expectException(MissingRequiredPropertyException::class);
@@ -45,16 +44,14 @@ final class MediaCategoryNodeTest extends TestCase
         $this->subject->add(new MediaCategory(''));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyTaxonomyIsGiven(): void
     {
         $this->subject->add(new MediaCategory('music/artist/album/song'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:category>music/artist/album/song</media:category>
 </root>
 XML;
@@ -62,9 +59,7 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function schemeIsGiven(): void
     {
         $this->subject->add(
@@ -76,7 +71,7 @@ XML;
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:category scheme="http://search.yahoo.com/mrss/category_schema">music/artist/album/song</media:category>
 </root>
 XML;
@@ -84,9 +79,7 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function labelIsGiven(): void
     {
         $this->subject->add(
@@ -98,7 +91,7 @@ XML;
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:category label="Ace Ventura - Pet Detective">Arts/Movies/Titles/A/Ace_Ventura_Series/Ace_Ventura_ -_Pet_Detective</media:category>
 </root>
 XML;

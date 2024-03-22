@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MediaThumbnailTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyRequiredArgumentIsGiven(): void
     {
         $subject = new MediaThumbnail('https://example.org/some-thumbnail');
@@ -29,9 +28,7 @@ final class MediaThumbnailTest extends TestCase
         self::assertSame('', $subject->getTime());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allArgumentsAreGiven(): void
     {
         $subject = new MediaThumbnail(

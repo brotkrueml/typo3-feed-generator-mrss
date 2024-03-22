@@ -20,11 +20,12 @@ use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer
- */
+#[CoversClass(MediaContentRenderer::class)]
 final class MediaContentRendererTest extends TestCase
 {
     private \DOMDocument $document;
@@ -37,13 +38,12 @@ final class MediaContentRendererTest extends TestCase
         $this->document->formatOutput = true;
 
         $this->rootElement = $this->document->appendChild($this->document->createElement('root'));
+        $this->rootElement->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
 
         $this->subject = new MediaContentRenderer();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function neitherUrlNorPlayerIsSetInValueObject(): void
     {
         $this->expectException(MissingRequiredMediaContentException::class);
@@ -54,10 +54,8 @@ final class MediaContentRendererTest extends TestCase
         $this->subject->render($content, $this->rootElement, $this->document);
     }
 
-    /**
-     * @test
-     * @dataProvider provider
-     */
+    #[Test]
+    #[DataProvider('provider')]
     public function onlyUrlIsGivenInValueObject(MediaContent $content, string $expected): void
     {
         $this->subject->render($content, $this->rootElement, $this->document);
@@ -65,14 +63,14 @@ final class MediaContentRendererTest extends TestCase
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    public function provider(): iterable
+    public static function provider(): iterable
     {
         yield 'Only url is given' => [
             'content' => (new MediaContent())
                 ->setUrl('https://example.org/some-media'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media"/>
 </root>
 XML,
@@ -83,7 +81,7 @@ XML,
                 ->setPlayer(new MediaPlayer('https://example.org/some-player?id=1234')),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content>
     <media:player url="https://example.org/some-player?id=1234" />
   </media:content>
@@ -97,7 +95,7 @@ XML,
                 ->setFileSize(987654),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" fileSize="987654"/>
 </root>
 XML,
@@ -109,7 +107,7 @@ XML,
                 ->setType('some/type'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" type="some/type"/>
 </root>
 XML,
@@ -121,7 +119,7 @@ XML,
                 ->setMedium(Medium::Video),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" medium="video"/>
 </root>
 XML,
@@ -133,7 +131,7 @@ XML,
                 ->setIsDefault(true),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" isDefault="true"/>
 </root>
 XML,
@@ -145,7 +143,7 @@ XML,
                 ->setExpression(Expression::Full),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" expression="full"/>
 </root>
 XML,
@@ -157,7 +155,7 @@ XML,
                 ->setBitrate(128),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" bitrate="128"/>
 </root>
 XML,
@@ -169,7 +167,7 @@ XML,
                 ->setFramerate(25),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" framerate="25"/>
 </root>
 XML,
@@ -181,7 +179,7 @@ XML,
                 ->setSamplingrate('44.1'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" samplingrate="44.1"/>
 </root>
 XML,
@@ -193,7 +191,7 @@ XML,
                 ->setChannels(2),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" channels="2"/>
 </root>
 XML,
@@ -205,7 +203,7 @@ XML,
                 ->setDuration(185),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" duration="185"/>
 </root>
 XML,
@@ -217,7 +215,7 @@ XML,
                 ->setHeight(200),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" height="200"/>
 </root>
 XML,
@@ -229,7 +227,7 @@ XML,
                 ->setWidth(300),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" width="300"/>
 </root>
 XML,
@@ -241,7 +239,7 @@ XML,
                 ->setLang('de'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media" lang="de"/>
 </root>
 XML,
@@ -253,7 +251,7 @@ XML,
                 ->setTitle('some title'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:title>some title</media:title>
   </media:content>
@@ -267,7 +265,7 @@ XML,
                 ->setDescription('some description'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:description>some description</media:description>
   </media:content>
@@ -281,7 +279,7 @@ XML,
                 ->setKeywords('some keyword'),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:keywords>some keyword</media:keywords>
   </media:content>
@@ -295,7 +293,7 @@ XML,
                 ->setRating(new MediaRating('adult')),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:rating>adult</media:rating>
   </media:content>
@@ -309,7 +307,7 @@ XML,
                 ->setCategory(new MediaCategory('music/artist/album/song')),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:category>music/artist/album/song</media:category>
   </media:content>
@@ -323,7 +321,7 @@ XML,
                 ->addThumbnails(new MediaThumbnail('https://example.org/some-thumbnail.jpg')),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:thumbnail url="https://example.org/some-thumbnail.jpg"/>
   </media:content>
@@ -339,7 +337,7 @@ XML,
                 ),
             'expected' => <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:content url="https://example.org/some-media">
     <media:thumbnail url="https://example.org/some-thumbnail.jpg"/>
     <media:thumbnail url="https://example.org/another-thumbnail.jpg"/>

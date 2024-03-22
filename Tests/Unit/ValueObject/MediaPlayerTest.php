@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MediaPlayerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyRequiredArgumentIsGiven(): void
     {
         $subject = new MediaPlayer('https://example.org/player?id=1111');
@@ -28,9 +27,7 @@ final class MediaPlayerTest extends TestCase
         self::assertSame(0, $subject->getWidth());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allArgumentsAreGiven(): void
     {
         $subject = new MediaPlayer('https://example.org/player?id=1111', 200, 400);

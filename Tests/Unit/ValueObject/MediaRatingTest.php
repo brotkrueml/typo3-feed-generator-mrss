@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MediaRatingTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyRequiredArgumentIsGiven(): void
     {
         $subject = new MediaRating('r (cz 1 lz 1 nz 1 oz 1 vz 1)');
@@ -27,9 +26,7 @@ final class MediaRatingTest extends TestCase
         self::assertSame('', $subject->getScheme());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allArgumentsAreGiven(): void
     {
         $subject = new MediaRating('r (cz 1 lz 1 nz 1 oz 1 vz 1)', 'urn:icra');

@@ -13,13 +13,12 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Exception;
 
 use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\WrongAudienceInRatingException;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class WrongAudienceInRatingExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forRating(): void
     {
         $actual = WrongAudienceInRatingException::forRating(new MediaRating('some rating'));

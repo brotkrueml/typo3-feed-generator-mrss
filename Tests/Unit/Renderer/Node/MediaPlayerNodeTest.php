@@ -14,11 +14,11 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Node;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaPlayerNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\ValueObject\MediaPlayer
- */
+#[CoversClass(MediaPlayer::class)]
 final class MediaPlayerNodeTest extends TestCase
 {
     private \DOMDocument $document;
@@ -30,13 +30,12 @@ final class MediaPlayerNodeTest extends TestCase
         $this->document->formatOutput = true;
 
         $rootElement = $this->document->appendChild($this->document->createElement('root'));
+        $rootElement->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
 
         $this->subject = new MediaPlayerNode($this->document, $rootElement);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function urlIsNotSetThenAnExceptionIsThrown(): void
     {
         $this->expectException(MissingRequiredPropertyException::class);
@@ -45,16 +44,14 @@ final class MediaPlayerNodeTest extends TestCase
         $this->subject->add(new MediaPlayer(''));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyUrlIsGiven(): void
     {
         $this->subject->add(new MediaPlayer('https://example.org/some-thumbnail.jpg'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:player url="https://example.org/some-thumbnail.jpg"/>
 </root>
 XML;
@@ -62,16 +59,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function heightIsGiven(): void
     {
         $this->subject->add(new MediaPlayer('https://example.org/some-thumbnail.jpg', height: 200));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:player url="https://example.org/some-thumbnail.jpg" height="200"/>
 </root>
 XML;
@@ -79,16 +74,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function widthIsGiven(): void
     {
         $this->subject->add(new MediaPlayer('https://example.org/some-thumbnail.jpg', width: 400));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:player url="https://example.org/some-thumbnail.jpg" width="400"/>
 </root>
 XML;

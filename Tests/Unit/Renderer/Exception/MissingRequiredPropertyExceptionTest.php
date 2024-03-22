@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Exception;
 
 use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MissingRequiredPropertyExceptionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function forProperty(): void
     {
         $actual = MissingRequiredPropertyException::forElement('some/property');

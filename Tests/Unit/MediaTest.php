@@ -15,11 +15,11 @@ use Brotkrueml\FeedGenerator\Contract\ExtensionContentInterface;
 use Brotkrueml\FeedGeneratorMrss\Media;
 use Brotkrueml\FeedGeneratorMrss\Renderer\MediaContentRenderer;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaContent;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\Media
- */
+#[CoversClass(Media::class)]
 final class MediaTest extends TestCase
 {
     private Media $subject;
@@ -29,9 +29,7 @@ final class MediaTest extends TestCase
         $this->subject = new Media();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canHandleReturnsTrueIfElementIsMediaContent(): void
     {
         $actual = $this->subject->canHandle(new MediaContent());
@@ -39,9 +37,7 @@ final class MediaTest extends TestCase
         self::assertTrue($actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canHandleReturnsFalseIfElementIsNotRecognised(): void
     {
         $element = new class() implements ExtensionContentInterface {};
@@ -51,9 +47,7 @@ final class MediaTest extends TestCase
         self::assertFalse($actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNamespaceReturnsCorrectNamespace(): void
     {
         $actual = $this->subject->getNamespace();
@@ -61,9 +55,7 @@ final class MediaTest extends TestCase
         self::assertSame('http://search.yahoo.com/mrss/', $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getQualifiedNameReturnsCorrectName(): void
     {
         $actual = $this->subject->getQualifiedName();
@@ -71,9 +63,7 @@ final class MediaTest extends TestCase
         self::assertSame('media', $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getRendererReturnsCorrectRenderer(): void
     {
         $actual = $this->subject->getXmlRenderer();

@@ -15,11 +15,12 @@ use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyExcep
 use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\WrongAudienceInRatingException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaRatingNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaRating;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaRatingNode
- */
+#[CoversClass(MediaRatingNode::class)]
 final class MediaRatingNodeTest extends TestCase
 {
     private \DOMDocument $document;
@@ -31,13 +32,12 @@ final class MediaRatingNodeTest extends TestCase
         $this->document->formatOutput = true;
 
         $rootElement = $this->document->appendChild($this->document->createElement('root'));
+        $rootElement->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
 
         $this->subject = new MediaRatingNode($this->document, $rootElement);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function audienceIsNotSetThenAnExceptionIsThrown(): void
     {
         $this->expectException(MissingRequiredPropertyException::class);
@@ -46,16 +46,14 @@ final class MediaRatingNodeTest extends TestCase
         $this->subject->add(new MediaRating(''));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyAudienceIsGiven(): void
     {
         $this->subject->add(new MediaRating('adult'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:rating>adult</media:rating>
 </root>
 XML;
@@ -63,16 +61,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function schemeIsGiven(): void
     {
         $this->subject->add(new MediaRating('pg', 'urn:mpaa'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:rating scheme="urn:mpaa">pg</media:rating>
 </root>
 XML;
@@ -80,16 +76,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function audienceIsAdultWithEmptyScheme(): void
     {
         $this->subject->add(new MediaRating('adult'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:rating>adult</media:rating>
 </root>
 XML;
@@ -97,16 +91,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function audienceIsNonAdultWithEmptyScheme(): void
     {
         $this->subject->add(new MediaRating('nonadult'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:rating>nonadult</media:rating>
 </root>
 XML;
@@ -114,16 +106,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function audienceIsAdultWithUrnSimpleScheme(): void
     {
         $this->subject->add(new MediaRating('adult', 'urn:simple'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:rating scheme="urn:simple">adult</media:rating>
 </root>
 XML;
@@ -131,16 +121,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function audienceIsNonadultWithUrnSimpleScheme(): void
     {
         $this->subject->add(new MediaRating('nonadult', 'urn:simple'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:rating scheme="urn:simple">nonadult</media:rating>
 </root>
 XML;
@@ -148,10 +136,8 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     * @dataProvider providerForWrongUrnSimpleAudience
-     */
+    #[Test]
+    #[DataProvider('providerForWrongUrnSimpleAudience')]
     public function exceptionIsThrownWhenWrongAudienceIsGivenForUrnSimpleScheme(MediaRating $rating): void
     {
         $this->expectException(WrongAudienceInRatingException::class);
@@ -160,7 +146,7 @@ XML;
         $this->subject->add($rating);
     }
 
-    public function providerForWrongUrnSimpleAudience(): iterable
+    public static function providerForWrongUrnSimpleAudience(): iterable
     {
         yield 'With empty scheme' => [
             new MediaRating('wrong-audience'),

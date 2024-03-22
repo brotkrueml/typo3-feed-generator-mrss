@@ -28,6 +28,7 @@ return RectorConfig::configure()
         earlyReturn: true,
     )
     ->withSets([
+        PHPUnitSetList::PHPUNIT_100,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
     ])
     ->withRootFiles()

@@ -14,11 +14,11 @@ namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\Renderer\Node;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Exception\MissingRequiredPropertyException;
 use Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode;
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaThumbnail;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FeedGeneratorMrss\Renderer\Node\MediaThumbnailNode
- */
+#[CoversClass(MediaThumbnailNode::class)]
 final class MediaThumbnailNodeTest extends TestCase
 {
     private \DOMDocument $document;
@@ -30,13 +30,12 @@ final class MediaThumbnailNodeTest extends TestCase
         $this->document->formatOutput = true;
 
         $rootElement = $this->document->appendChild($this->document->createElement('root'));
+        $rootElement->setAttribute('xmlns:media', 'http://search.yahoo.com/mrss/');
 
         $this->subject = new MediaThumbnailNode($this->document, $rootElement);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function urlIsNotSetThenAnExceptionIsThrown(): void
     {
         $this->expectException(MissingRequiredPropertyException::class);
@@ -45,16 +44,14 @@ final class MediaThumbnailNodeTest extends TestCase
         $this->subject->add(new MediaThumbnail(''));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyUrlIsGiven(): void
     {
         $this->subject->add(new MediaThumbnail('https://example.org/some-thumbnail.jpg'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:thumbnail url="https://example.org/some-thumbnail.jpg"/>
 </root>
 XML;
@@ -62,16 +59,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function heightIsGiven(): void
     {
         $this->subject->add(new MediaThumbnail('https://example.org/some-thumbnail.jpg', height: 50));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:thumbnail url="https://example.org/some-thumbnail.jpg" height="50"/>
 </root>
 XML;
@@ -79,16 +74,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function widthIsGiven(): void
     {
         $this->subject->add(new MediaThumbnail('https://example.org/some-thumbnail.jpg', width: 75));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:thumbnail url="https://example.org/some-thumbnail.jpg" width="75"/>
 </root>
 XML;
@@ -96,16 +89,14 @@ XML;
         self::assertXmlStringEqualsXmlString($expected, $this->document->saveXML());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function timeIsGiven(): void
     {
         $this->subject->add(new MediaThumbnail('https://example.org/some-thumbnail.jpg', time: '12:05:01.123'));
 
         $expected = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
-<root>
+<root xmlns:media="http://search.yahoo.com/mrss/">
   <media:thumbnail url="https://example.org/some-thumbnail.jpg" time="12:05:01.123"/>
 </root>
 XML;

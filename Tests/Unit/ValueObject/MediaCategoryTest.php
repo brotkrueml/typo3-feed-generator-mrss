@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FeedGeneratorMrss\Tests\Unit\ValueObject;
 
 use Brotkrueml\FeedGeneratorMrss\ValueObject\MediaCategory;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MediaCategoryTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function onlyRequiredArgumentIsGiven(): void
     {
         $subject = new MediaCategory('Arts/Movies/Titles/A/Ace_Ventura_Series/Ace_Ventura_ -_Pet_Detective');
@@ -28,9 +27,7 @@ final class MediaCategoryTest extends TestCase
         self::assertSame('', $subject->getLabel());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allArgumentsAreGiven(): void
     {
         $subject = new MediaCategory(
