@@ -36,10 +36,10 @@ final class MediaThumbnailNode
 
         $thumbnailNode->setAttribute('url', $thumbnail->getUrl());
         if ($thumbnail->getHeight() > 0) {
-            $thumbnailNode->setAttribute('height', (string)$thumbnail->getHeight());
+            $thumbnailNode->setAttribute('height', (string) $thumbnail->getHeight());
         }
         if ($thumbnail->getWidth() > 0) {
-            $thumbnailNode->setAttribute('width', (string)$thumbnail->getWidth());
+            $thumbnailNode->setAttribute('width', (string) $thumbnail->getWidth());
         }
         if ($thumbnail->getTime() !== '') {
             $thumbnailNode->setAttribute('time', $thumbnail->getTime());

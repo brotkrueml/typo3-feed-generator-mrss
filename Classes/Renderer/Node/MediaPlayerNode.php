@@ -36,10 +36,10 @@ final class MediaPlayerNode
 
         $playerNode->setAttribute('url', $player->getUrl());
         if ($player->getHeight() > 0) {
-            $playerNode->setAttribute('height', (string)$player->getHeight());
+            $playerNode->setAttribute('height', (string) $player->getHeight());
         }
         if ($player->getWidth() > 0) {
-            $playerNode->setAttribute('width', (string)$player->getWidth());
+            $playerNode->setAttribute('width', (string) $player->getWidth());
         }
 
         $this->parentElement->appendChild($playerNode);

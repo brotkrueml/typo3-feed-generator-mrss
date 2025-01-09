@@ -95,7 +95,7 @@ final class MediaContentRenderer implements XmlExtensionRendererInterface
             return;
         }
 
-        $node->setAttribute($name, (string)$value);
+        $node->setAttribute($name, (string) $value);
     }
 
     private function addTextNode(string $name, string $value, \DOMElement $parentElement): void
