@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
-use Rector\PHPUnit\CodeQuality\Rector\ClassMethod\ReplaceTestAnnotationWithPrefixedFunctionRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
@@ -33,7 +31,5 @@ return RectorConfig::configure()
     ])
     ->withRootFiles()
     ->withSkip([
-        AddLiteralSeparatorToNumberRector::class,
         PreferPHPUnitThisCallRector::class,
-        ReplaceTestAnnotationWithPrefixedFunctionRector::class,
     ]);
