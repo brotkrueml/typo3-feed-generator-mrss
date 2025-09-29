@@ -67,7 +67,6 @@
 			"dev-main": "0.3.x-dev"
 		},
 		"typo3/cms": {
-			"app-dir": ".Build",
 			"extension-key": "feed_generator_mrss",
 			"skip-ter-packagist-import": true,
 			"web-dir": ".Build/web"
